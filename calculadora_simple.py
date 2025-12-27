@@ -101,11 +101,13 @@ def exportar():
         contenido.append("")
         contenido.append("✓ COLUMNAS")
         contenido.append("✓ CIMENTACIONES (zapatas, pilotes, etc.)")
+        contenido.append("✓ EDIFICIOS DE 5 PISOS O MÁS")
         contenido.append("")
         contenido.append("❌ NO APLICABLE para:")
         contenido.append("   • Vigas")
         contenido.append("   • Losas")
         contenido.append("   • Muros estructurales")
+        contenido.append("   • Edificios de menos de 5 pisos")
         contenido.append("   • Otros elementos estructurales")
         contenido.append("")
         contenido.append("Esta limitación está establecida en la norma NSR-10 B.5.4.2")
@@ -172,7 +174,7 @@ frame.pack(fill=tk.BOTH, expand=True)
 ttk.Label(frame, text="🏗️ Calculadora Factor Reducción v2.0", 
          font=("Arial", 14, "bold")).pack(pady=(0, 5))
 
-ttk.Label(frame, text="NSR-10 B.5.4.2 - Solo para Columnas y Cimentaciones", 
+ttk.Label(frame, text="NSR-10 B.5.4.2 - Solo Columnas/Cimentaciones (5+ pisos)", 
          font=("Arial", 10, "italic"), foreground="red").pack(pady=(0, 15))
 
 # Input

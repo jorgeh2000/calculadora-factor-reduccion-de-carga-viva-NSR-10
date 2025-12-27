@@ -28,6 +28,17 @@ def exportar():
             messagebox.showerror("Error", "El número de pisos debe ser mayor a 0")
             return
         
+        # Validación para edificios con menos de 5 pisos
+        if n < 5:
+            respuesta = messagebox.askyesno("Advertencia", 
+                                          f"⚠️ ATENCIÓN: Este edificio tiene {n} piso{'s' if n > 1 else ''}.\n\n" +
+                                          "Los factores de reducción según NSR-10 B.5.4.2 " +
+                                          "APLICAN ÚNICAMENTE para edificios de 5 PISOS O MÁS.\n\n" +
+                                          "¿Desea continuar con el reporte? " +
+                                          "(Se incluirá una nota de advertencia)")
+            if not respuesta:
+                return
+        
         # Seleccionar carpeta donde guardar
         carpeta = filedialog.askdirectory(title="Seleccionar carpeta donde guardar el reporte")
         if not carpeta:
@@ -89,11 +100,13 @@ def exportar():
             "",
             "✓ COLUMNAS",
             "✓ CIMENTACIONES (zapatas, pilotes, etc.)",
+            "✓ EDIFICIOS DE 5 PISOS O MÁS",
             "",
             "❌ NO APLICABLE para:",
             "   • Vigas", 
             "   • Losas",
             "   • Muros estructurales",
+            "   • Edificios de menos de 5 pisos",
             "   • Otros elementos estructurales",
             "",
             "Esta limitación está establecida en la norma NSR-10 B.5.4.2",
@@ -127,6 +140,15 @@ def calcular():
         if n < 1:
             messagebox.showerror("Error", "El número de pisos debe ser mayor a 0")
             return
+        
+        # Validación para edificios con menos de 5 pisos
+        if n < 5:
+            messagebox.showwarning("Advertencia", 
+                                 f"⚠️ ATENCIÓN: Este edificio tiene {n} piso{'s' if n > 1 else ''}.\n\n" +
+                                 "Los factores de reducción según NSR-10 B.5.4.2 " +
+                                 "APLICAN ÚNICAMENTE para edificios de 5 PISOS O MÁS.\n\n" +
+                                 "Para edificios de menos de 5 pisos, consulte " +
+                                 "otras disposiciones normativas.")
         
         # Limpiar tabla anterior
         for item in tabla.get_children():
@@ -239,8 +261,8 @@ frame_nota_importante = ttk.LabelFrame(frame_info, text="⚠️ NOTA IMPORTANTE"
 frame_nota_importante.pack(fill=tk.X, pady=(0, 10))
 
 nota_importante = ("APLICACIÓN ESPECÍFICA: Los factores de reducción calculados por esta herramienta " +
-                  "APLICAN ÚNICAMENTE para el diseño de COLUMNAS y CIMENTACIONES. " +
-                  "NO deben utilizarse para el diseño de vigas, losas u otros elementos estructurales.")
+                  "APLICAN ÚNICAMENTE para el diseño de COLUMNAS y CIMENTACIONES en edificios de " +
+                  "5 PISOS O MÁS. NO deben utilizarse para el diseño de vigas, losas u otros elementos estructurales.")
 
 label_nota = ttk.Label(frame_nota_importante, text=nota_importante, wraplength=650, 
                        font=("Arial", 9, "bold"), foreground="red")
