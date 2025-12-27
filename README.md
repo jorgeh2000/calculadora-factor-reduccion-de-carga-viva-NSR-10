@@ -1,177 +1,132 @@
-# Calculadora de Factor de Reducción de Carga Viva
+# 🏗️ Calculadora de Factor de Reducción de Carga Viva NSR-10
+**Versión 2.2 FINAL - Diciembre 2025**
 
-## Descripción
-Este proyecto implementa un algoritmo para calcular factores de reducción de carga viva en edificios según el número de pisos.
+## 📋 Descripción
 
-## Algoritmo Implementado
-Para un edificio de **n** pisos, el factor de reducción **r_i** para el piso **i** se calcula según:
+Esta aplicación calcula los factores de reducción de carga viva según la norma colombiana NSR-10, sección B.5.4.2. Desarrollada específicamente para ingenieros estructurales que requieren determinar los factores de reducción aplicables en el diseño de columnas y cimentaciones.
 
-- **Pisos superiores** (i = n-4 a i = n): `r_i = 1.0` (5 pisos superiores)
-- **Zona intermedia** (i = n-5 a i = n-8): `r_i = 1.0 + 0.1*(i - n + 4)` (4 pisos)
-- **Pisos inferiores** (i = 1 a i = n-9): `r_i = 0.5` (resto de pisos)
+## ⚠️ LIMITACIONES CRÍTICAS
 
-## Archivos
+### 🔴 APLICACIÓN ESPECÍFICA
+Los factores calculados **APLICAN ÚNICAMENTE** para:
+- ✅ **COLUMNAS**
+- ✅ **CIMENTACIONES** (zapatas, pilotes, etc.)
+- ✅ **EDIFICIOS DE 5 PISOS O MÁS**
 
-### `version_simple.py`
-Versión básica con interfaz profesional:
-- **Splash screen con disclaimer de responsabilidad**
-- **Icono personalizado (si está disponible)**
-- **Menú ribbon con ayuda integrada**
-- Interfaz simple pero profesional con tkinter
-- Cálculo automático
-- Tabla de resultados clara
-- **Selector de carpeta para exportar TXT**
-- **Exportación a archivo TXT con reporte completo**
-- **Recomendado para uso general**
+### ❌ NO APLICABLE PARA:
+- Vigas
+- Losas
+- Muros estructurales
+- **Edificios de menos de 5 pisos**
+- Otros elementos estructurales
 
-### `reduccion_carga_viva.py`
-Versión completa con funcionalidades avanzadas:
-- **Todas las funcionalidades de la versión simple PLUS:**
-- **Splash screen profesional más detallado**
-- **Ayuda avanzada con documentación completa**
-- Interfaz más elaborada y profesional
-- **Selector de carpeta para ambas exportaciones**
-- Exportación a CSV y TXT
-- **Reporte TXT detallado con estadísticas avanzadas**
-- Información detallada del criterio aplicado
-- **Validaciones y manejo robusto de errores**
+## 🚨 Validaciones de Seguridad Implementadas
 
-## Requisitos
-- Python 3.7 o superior
-- tkinter (incluido por defecto en Python)
-- pandas (solo para la versión completa)
+1. **Validación de altura del edificio**: La aplicación detecta automáticamente si el edificio tiene menos de 5 pisos y muestra advertencias críticas.
 
-## Instalación
-```bash
-# Instalar pandas (solo para versión completa)
-pip install pandas
+2. **Advertencias en interfaz**: Nota visible permanente en la aplicación sobre las limitaciones de uso.
+
+3. **Advertencias en reportes**: Cada reporte TXT incluye secciones específicas sobre aplicabilidad y limitaciones.
+
+4. **Mensajes de alerta**: Diálogos de advertencia cuando se intenta usar la aplicación fuera de su alcance.
+
+## 🧮 Algoritmo NSR-10 B.5.4.2
+
+Para un edificio de 'n' pisos, el factor de reducción r_i para el piso 'i' se calcula como:
+
+### Pisos superiores (i = n-4 a i = n):
+```
+r_i = 1.0
+```
+*Aplicado a los 5 pisos superiores*
+
+### Zona intermedia (i = n-5 a i = n-8):
+```
+r_i = 1.0 + 0.1 × (i - n + 4)
 ```
 
-## Configuración del Icono
-
-Para usar el icono personalizado:
-1. Asegúrese de que el archivo `LOGO 4D-ROTULO.ico` esté en `E:\PROYECTOS PYTHON\`
-2. Si no se encuentra, la aplicación usará el icono predeterminado de Windows
-3. El icono se aplica tanto a la ventana principal como a ventanas de ayuda
-
-## Funcionalidades de Seguridad
-
-### Disclaimer de Responsabilidad:
-- **Aparece obligatoriamente** al iniciar cualquier versión
-- **Recordatorio importante**: Verificar siempre la aplicabilidad
-- **Responsabilidad del usuario**: Validar con profesional calificado
-- **Auto-cierre**: Se cierra automáticamente después de algunos segundos
-
-### Validaciones Implementadas:
-- Verificación de números válidos
-- Control de permisos de escritura
-- Manejo de errores en exportación
-- Selección de carpeta válida
-
-## Uso
-
-### Ejecutar versión simple:
-```bash
-python version_simple.py
+### Pisos inferiores (i = 1 a i = n-9):
+```
+r_i = 0.5
 ```
 
-### Ejecutar versión completa:
-```bash
-python reduccion_carga_viva.py
+## 🖥️ Características de la Aplicación
+
+- **Interfaz gráfica intuitiva** con tkinter
+- **Tabla de resultados** con cálculos detallados por piso
+- **Exportación profesional** a archivos TXT con formato estructurado
+- **Validaciones automáticas** de entrada
+- **Icono corporativo** 4D-ROTULO integrado
+- **Reportes profesionales** con toda la información técnica y legal
+
+## 📁 Archivos del Proyecto
+
+- `calculadora_estable.py` - Versión principal de producción
+- `calculadora_simple.py` - Versión alternativa con características adicionales
+- `calculadora_limpia.py` - Versión mínima para compatibilidad
+- `dist/CalculadoraFactorReduccion_NSR10_v2.2_FINAL.exe` - Ejecutable final (11 MB)
+- `LOGO 4D-ROTULO.ico` - Icono corporativo
+
+## 🚀 Uso del Ejecutable
+
+1. Ejecute `CalculadoraFactorReduccion_NSR10_v2.2_FINAL.exe`
+2. Ingrese el número de pisos del edificio (**mínimo 5**)
+3. Haga clic en "Calcular Factores"
+4. Revise los resultados en la tabla
+5. Use "Exportar a TXT" para generar reportes profesionales
+
+## ⚖️ Responsabilidad Profesional
+
+Esta herramienta es una **ayuda de cálculo** que implementa estrictamente lo establecido en NSR-10 B.5.4.2. El usuario es responsable de:
+
+- Verificar la aplicabilidad de la norma a su proyecto específico
+- Confirmar que el edificio cumple los requisitos (≥5 pisos)
+- Aplicar los factores únicamente en columnas y cimentaciones
+- Realizar las validaciones profesionales correspondientes
+
+## 📜 Referencia Normativa
+
+**NSR-10 (Reglamento Colombiano de Construcción Sismo Resistente)**
+- Título B: Cargas
+- Capítulo B.5: Cargas Vivas
+- Sección B.5.4.2: Factor de Reducción de Carga Viva
+
+## 🏢 Información Corporativa
+
+**Desarrollado por:** 4D ROTULO  
+**Versión:** 2.2 FINAL  
+**Fecha:** Diciembre 2025  
+**Lenguaje:** Python 3.13  
+**Framework:** Tkinter  
+
+## 🔧 Desarrollo Técnico
+
+### Requisitos para desarrolladores:
+- Python 3.13+
+- tkinter (incluido con Python)
+- PyInstaller 6.16.0+ (para compilación)
+
+### Estructura del código:
+```
+calculadora_estable.py
+├── Funciones principales
+│   ├── calcular_factor() - Implementa NSR-10 B.5.4.2
+│   ├── calcular() - Maneja GUI y validaciones
+│   └── exportar() - Genera reportes TXT
+├── Interfaz GUI
+│   ├── Widgets de entrada y resultados
+│   ├── Tabla de factores
+│   └── Botones de acción
+└── Validaciones de seguridad
+    ├── Verificación de altura mínima
+    ├── Mensajes de advertencia
+    └── Notas de aplicabilidad
 ```
 
-## 📊 **Nuevo Formato de Reporte TXT v2.0**
+## 📞 Soporte
 
-### ✨ **Mejoras Implementadas:**
-- ✅ **Tabla ASCII profesional** idéntica a la ventana principal
-- ✅ **Bordes estructurados** con caracteres Unicode para mejor presentación
-- ✅ **Columnas organizadas**: Piso | Factor | Criterio | Observaciones
-- ✅ **Ecuaciones matemáticas detalladas** con símbolos apropiados
-- ✅ **Referencias normativas** completas y actualizadas
-- ✅ **Variables explicadas** con definiciones claras
-- ✅ **Disclaimer profesional** expandido con responsabilidades específicas
+Para consultas técnicas sobre la implementación de la norma NSR-10 B.5.4.2 o el uso apropiado de esta herramienta, consulte con un ingeniero estructural certificado.
 
-### 📐 **Ecuaciones Incluidas:**
-1. **Pisos Superiores**: `r_i = 1.0` (para i ≥ n-4)
-2. **Zona Intermedia**: `r_i = 1.0 + 0.1 × (i - n + 4)` (para n-8 ≤ i < n-4)  
-3. **Pisos Inferiores**: `r_i = 0.5` (para i < n-8)
+---
 
-### 📚 **Referencias Normativas Incluidas:**
-- Código de Construcción vigente
-- Norma de Diseño Sísmico y Cargas
-- Reglamento de Construcciones locales
-- ASCE 7 - Minimum Design Loads (referencia internacional)
-- Normas técnicas de ingeniería estructural
-
-### 📋 **Variables Definidas:**
-- **n**: Número total de pisos del edificio
-- **i**: Número del piso analizado (1 = planta baja)
-- **r_i**: Factor de reducción para el piso i
-
-## Ejemplo de Uso
-1. **Al iniciar**: Se muestra splash screen con disclaimer importante
-2. **Interfaz principal**: Ingrese el número de pisos del edificio
-3. **Cálculo**: Haga clic en "Calcular" (o automático)
-4. **Resultados**: Observe los factores en la tabla organizada
-5. **Exportar TXT**: 
-   - Haga clic en "Exportar TXT"
-   - **Seleccione la carpeta destino**
-   - Reporte completo se guarda automáticamente
-6. **Ayuda**: Use el menú "📚 Ayuda" para información detallada
-7. (Versión completa) **Exportar CSV** con selección de carpeta
-
-## 🆕 Nuevas Funcionalidades v2.0
-
-### 🚀 Mejoras de Interfaz:
-- **Splash Screen**: Pantalla inicial con disclaimer de responsabilidad
-- **Icono Personalizado**: Soporte para LOGO 4D-ROTULO.ico
-- **Menú Ribbon**: Navegación profesional con pestañas organizadas
-- **Ayuda Integrada**: Documentación completa desde la aplicación
-
-### 📁 Exportación Mejorada:
-- **Selector de Carpeta**: Elige dónde guardar tus reportes
-- **Nombres Únicos**: Timestamps automáticos evitan sobrescritura
-- **Múltiples Formatos**: TXT detallado y CSV para análisis
-
-### ⚖️ Responsabilidad Profesional:
-- **Disclaimer Prominente**: Recordatorio de verificación independiente
-- **Documentación Clara**: Limitaciones y responsabilidades explicadas
-- **Uso Profesional**: Herramienta de apoyo, no substituto de criterio ingenieril
-
-## Características de los Reportes TXT
-
-### Versión Simple:
-- **Splash con disclaimer** al iniciar
-- **Selector de carpeta** para elegir ubicación
-- Información del algoritmo utilizado detallada
-- Tabla completa con factores y cálculos paso a paso
-- Fecha y hora de generación
-- **Menú de ayuda integrado**
-- Formato legible para impresión
-- **Timestamps únicos** para evitar sobrescritura
-
-### Versión Completa:
-- **Todo lo de la versión simple PLUS:**
-- **Splash screen profesional** más elaborado
-- **Ayuda avanzada** con documentación técnica completa
-- Resumen estadístico completo y detallado
-- Análisis de distribución de factores por categorías
-- Información técnica detallada con justificaciones
-- **Manejo robusto de errores** y validaciones
-- **Exportación dual** (TXT y CSV) con selector de carpeta
-- Formato profesional para documentación técnica
-
-## Ejemplo de Resultados
-Para un edificio de 10 pisos:
-```
-Piso 10: r = 1.000 (Piso superior)
-Piso  9: r = 1.000 (Piso superior) 
-Piso  8: r = 1.000 (Piso superior)
-Piso  7: r = 1.000 (Piso superior)
-Piso  6: r = 1.000 (Piso superior)
-Piso  5: r = 0.900 (Zona intermedia)
-Piso  4: r = 0.800 (Zona intermedia)
-Piso  3: r = 0.700 (Zona intermedia)
-Piso  2: r = 0.600 (Zona intermedia)
-Piso  1: r = 0.500 (Piso inferior)
-```
+**⚠️ IMPORTANTE:** Esta aplicación es una herramienta de cálculo que debe usarse bajo supervisión profesional. Los factores de reducción deben aplicarse únicamente según las limitaciones establecidas en la norma NSR-10 B.5.4.2.
