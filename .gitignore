@@ -1,0 +1,32 @@
+# Archivos temporales y cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+.pytest_cache/
+
+# Archivos de desarrollo
+.vscode/
+.idea/
+*.tmp
+temp_*
+
+# Archivos de salida
+*.log
+*.txt
+*.spec
+build/
+dist/
+
+# Archivos del sistema
+Thumbs.db
+.DS_Store
+*.swp
+*.swo
+
+# Archivos específicos del proyecto
+ejemplo_*.txt
+reporte_*.txt
+test_*.py
