@@ -18,7 +18,7 @@ temp_*
 *.txt
 *.spec
 build/
-dist/
+# dist/ # Comentamos para incluir los ejecutables
 
 # Archivos del sistema
 Thumbs.db
