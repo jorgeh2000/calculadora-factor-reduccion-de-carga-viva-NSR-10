@@ -79,14 +79,22 @@ def exportar():
         contenido.append("Reporte generado por: Calculadora de Factor de Reducción v2.0")
         contenido.append("Referencia normativa: NSR-10 B.5.4.2")
         
-        archivo = os.path.join(carpeta, f"reporte_{n}_pisos_{datetime.now().strftime('%Y%m%d_%H%M%S')}.txt")
-        with open(archivo, 'w', encoding='utf-8') as f:
-            f.write('\n'.join(contenido))
-        
-        messagebox.showinfo("Éxito", f"Archivo guardado:\n{archivo}")
-        
-    except ValueError:
-        messagebox.showerror("Error", "Ingrese número válido")
+        contenido.append("")
+        contenido.append("=" * 60)
+        contenido.append("⚠️  NOTA IMPORTANTE - APLICACIÓN ESPECÍFICA:")
+        contenido.append("-" * 45)
+        contenido.append("Los factores de reducción calculados en este reporte")
+        contenido.append("APLICAN ÚNICAMENTE para el diseño de:")
+        contenido.append("")
+        contenido.append("✓ COLUMNAS")
+        contenido.append("✓ CIMENTACIONES (zapatas, pilotes, etc.)")
+        contenido.append("")
+        contenido.append("❌ NO APLICABLE para:")
+        contenido.append("   • Vigas")
+        contenido.append("   • Losas")
+        contenido.append("   • Otros elementos estructurales")
+        contenido.append("")
+        contenido.append("Referencia normativa: NSR-10 B.5.4.2")
 
 def calcular():
     """Calcula y muestra los factores de reducción"""

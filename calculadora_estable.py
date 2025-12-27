@@ -82,6 +82,24 @@ def exportar():
         contenido.extend([
             "",
             "=" * 60,
+            "⚠️  NOTA IMPORTANTE - APLICACIÓN ESPECÍFICA:",
+            "-" * 45,
+            "Los factores de reducción calculados en este reporte",
+            "APLICAN ÚNICAMENTE para el diseño de:",
+            "",
+            "✓ COLUMNAS",
+            "✓ CIMENTACIONES (zapatas, pilotes, etc.)",
+            "",
+            "❌ NO APLICABLE para:",
+            "   • Vigas", 
+            "   • Losas",
+            "   • Muros estructurales",
+            "   • Otros elementos estructurales",
+            "",
+            "Esta limitación está establecida en la norma NSR-10 B.5.4.2",
+            "y debe ser respetada estrictamente en el diseño.",
+            "",
+            "=" * 60,
             "Reporte generado por: Calculadora de Factor de Reducción v2.0",
             "Referencia normativa: NSR-10 B.5.4.2"
         ])
@@ -215,6 +233,18 @@ scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 # Frame inferior con información
 frame_info = ttk.Frame(frame_principal)
 frame_info.pack(fill=tk.X, pady=(10, 0))
+
+# Nota importante sobre aplicación
+frame_nota_importante = ttk.LabelFrame(frame_info, text="⚠️ NOTA IMPORTANTE", padding="10")
+frame_nota_importante.pack(fill=tk.X, pady=(0, 10))
+
+nota_importante = ("APLICACIÓN ESPECÍFICA: Los factores de reducción calculados por esta herramienta " +
+                  "APLICAN ÚNICAMENTE para el diseño de COLUMNAS y CIMENTACIONES. " +
+                  "NO deben utilizarse para el diseño de vigas, losas u otros elementos estructurales.")
+
+label_nota = ttk.Label(frame_nota_importante, text=nota_importante, wraplength=650, 
+                       font=("Arial", 9, "bold"), foreground="red")
+label_nota.pack()
 
 info_texto = ("💡 Información: Esta calculadora implementa los factores de reducción " +
               "según la norma NSR-10 B.5.4.2. Los resultados deben ser revisados " +
